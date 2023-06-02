@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import FormImput from "../form-input/form-input.component";
+import Buttons from "../button/button.component";
 import {
   createAuthUserWithEmailAndPassowrd,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import FormImput from "../form-input/form-input.component";
-import Buttons from "../button/button.component";
-import './sign-up-form.styles.scss';
+
+import "./sign-up-form.styles.scss";
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -19,10 +20,7 @@ const SignUpForm = () => {
   const { displayName, email, password, confirmPassword } = formFields;
 
   const resetFormFields = () => {
-    console.log("1");
-
     setFormFields(defaultFormFields);
-    console.log("2");
   };
 
   const handleSubmit = async (event) => {
@@ -36,6 +34,7 @@ const SignUpForm = () => {
         email,
         password
       );
+
       await createUserDocumentFromAuth(user, { displayName });
 
       resetFormFields();
